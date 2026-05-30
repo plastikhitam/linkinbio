@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link In Bio</title>
+    <!-- Mengambil Font Poppins dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Mengambil Icon Library (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #6366f1; /* Warna Utama (Indigo) */
+            --secondary-color: #a855f7; /* Warna Sekunder (Purple) */
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+            /* Background Gradient Animasi */
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* --- ANIMASI BACKGROUND --- */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        .container {
+            width: 100%;
+            max-width: 480px; /* Lebar standar mobile link-in-bio */
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* --- PROFILE SECTION --- */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px var(--primary-color);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-bio {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* --- LINKS SECTION --- */
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: var(--shadow-glass);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0; /* Untuk animasi staggered */
+        }
+
+        /* Efek Hover Link */
+        .link-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .link-card:active {
+            transform: scale(0.98);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .link-icon {
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .link-arrow {
+            opacity: 0.5;
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+            color: var(--primary-color);
+        }
+
+        /* --- SOCIAL ICONS --- */
+        .socials {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- SHARE BUTTON --- */
+        .fab-share {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .fab-share:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 400px) {
+            .profile-name { font-size: 1.3rem; }
+            .link-card { padding: 14px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Share Floating -->
+    <button class="fab-share" onclick="sharePage()" title="Bagikan Profil">
+        <i class="fa-solid fa-share-nodes"></i>
+    </button>
+
+    <main class="container">
+        <!-- Header Profil -->
+        <header class="profile-section">
+            <img id="p-image" src="" alt="Profile Picture" class="profile-img">
+            <h1 id="p-name" class="profile-name"></h1>
+            <p id="p-bio" class="profile-bio"></p>
+        </header>
+
+        <!-- Daftar Link -->
+        <section id="links-container" class="links-list">
+            <!-- Link akan di-generate oleh JavaScript -->
+        </section>
+
+        <!-- Ikon Sosial Media -->
+        <nav id="socials-container" class="socials">
+            <!-- Sosial media akan di-generate oleh JavaScript -->
+        </nav>
+
+        <footer>
+            &copy; <span id="year"></span> <span id="footer-name"></span>
+        </footer>
+    </main>
+
+    <script>
+        /**
+         * ==========================================
+         *  KONFIGURASI KONTEN (EDIT DI SINI)
+         * ==========================================
+         */
+        const userConfig = {
+            // Data Profil
+            profile: {
+                name: "Plastik Hitam",
+                // Ganti URL gambar di bawah. Bisa pakai URL foto kamu atau link placeholder.
+                // Gunakan link gambar persegi agar pas di lingkaran.
+                image: "https://picsum.photos/seed/plastikhitam/200/200", 
+                bio: "Marketing Engineering & Business Growth Partner. Mengubah kopi menjadi outcome."
+            },
+
+            // Daftar Link (Tombol)
+            links: [
+                {
+                    title: "Website Resmi Saya",
+                    url: "https://plastikhitam.github.io",
+                    icon: "fa-solid fa-globe", // Class icon FontAwesome
+                    isPrimary: true // Jika true, tombol akan sedikit lebih menonjol (opsional logic)
+                }
+                // ,
+                // {
+                //     title: "Portofolio Desain",
+                //     url: "https://dribbble.com",
+                //     icon: "fa-solid fa-palette"
+                // },
+                // {
+                //     title: "Belajar Coding Bareng",
+                //     url: "https://youtube.com",
+                //     icon: "fa-brands fa-youtube"
+                // },
+                // {
+                //     title: "Hubungi via WhatsApp",
+                //     url: "https://wa.me/628123456789",
+                //     icon: "fa-brands fa-whatsapp"
+                // },
+                // {
+                //     title: "Baca Artikel Terbaru",
+                //     url: "https://medium.com",
+                //     icon: "fa-solid fa-feather"
+                // }
+            ],
+
+            // Daftar Sosial Media (Ikon Kecil di Bawah)
+            socials: [
+                { icon: "fa-brands fa-instagram", url: "https://instagram.com" },
+                { icon: "fa-brands fa-twitter", url: "https://twitter.com" },
+                { icon: "fa-brands fa-linkedin-in", url: "https://linkedin.com" },
+                { icon: "fa-brands fa-tiktok", url: "https://tiktok.com" }
+            ]
+        };
+
+        /**
+         * ==========================================
+         *  LOGIKA PROGRAM (JANGAN DIUBAH)
+         * ==========================================
+         */
+        
+        // Fungsi untuk me-render konten ke halaman
+        function renderContent() {
+            // 1. Render Profil
+            document.getElementById('p-image').src = userConfig.profile.image;
+            document.getElementById('p-name').textContent = userConfig.profile.name;
+            document.getElementById('p-bio').textContent = userConfig.profile.bio;
+            document.getElementById('footer-name').textContent = userConfig.profile.name;
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 2. Render Links
+            const linksContainer = document.getElementById('links-container');
+            userConfig.links.forEach((link, index) => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.className = 'link-card';
+                a.target = '_blank'; // Membuka link di tab baru
+                a.rel = 'noopener noreferrer';
+                
+                // Menambahkan delay animasi agar muncul berurutan
+                a.style.animationDelay = `${index * 0.1}s`;
+
+                // HTML di dalam tombol
+                a.innerHTML = `
+                    <div class="link-content">
+                        <i class="${link.icon} link-icon"></i>
+                        <span class="link-title">${link.title}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                `;
+                
+                linksContainer.appendChild(a);
+            });
+
+            // 3. Render Socials
+            const socialsContainer = document.getElementById('socials-container');
+            userConfig.socials.forEach(social => {
+                const a = document.createElement('a');
+                a.href = social.url;
+                a.className = 'social-link';
+                a.target = '_blank';
+                a.innerHTML = `<i class="${social.icon}"></i>`;
+                socialsContainer.appendChild(a);
+            });
+        }
+
+        // Fungsi Share Sederhana
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: userConfig.profile.name,
+                    text: `Cek link profil ${userConfig.profile.name} di sini!`,
+                    url: window.location.href,
+                })
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback jika browser tidak support Web Share API
+                // Copy link ke clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert("Link berhasil disalin ke clipboard!");
+            }
+        }
+
+        // Jalankan fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', renderContent);
+    </script>
+</body>
+</html>
